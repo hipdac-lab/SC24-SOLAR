@@ -2,7 +2,7 @@
 
 SOLAR is a data-loading framework designed for distributed Deep Neural Networks (DNN) training. It enhances the data loading time by making efficient use of the in-memory buffer. SOLAR is integrated with the PyTorch framework, leveraging parallel HDF5 Python APIs.
 
-While preparing the artifacts, we ran them on a single node from a cluster equipped with 1TB of disk storage, 128GiB of memory, one Intel(R) Xeon(R) W-2265 CPU @ 3.50GHz CPU, and two NVIDIA RTX A4000 GPUs. We recommend that reviewers use a similar system configuration or meet the minimum system requirements.
+While preparing the artifacts, we ran them on a single node from a cluster equipped with 1TB of disk storage, 128GiB of memory, one Intel(R) Xeon(R) W-2265 CPU @ 3.50GHz CPU, and two NVIDIA RTX A4000 GPUs. We recommend that you use a similar system configuration or meet the minimum system requirements.
 
 
 ## Minimum System Requirements
@@ -29,6 +29,7 @@ Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 pip3 install gdown
 gdown https://drive.google.com/u/5/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI&export=download
 ```
+Please note that if you still receive a "command not found" error, you should try adding ```~/.local/bin``` to your environment variable $PATH.
 
 ### Method 2: via GitHub
 ```
