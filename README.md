@@ -1,12 +1,9 @@
 # SOLAR: A High-Performance Data Loading Framework for Distributed DNN Training with Large Datasets
 
-SOLAR is a data-loading framework for distributed Deep Neural Networks (DNN) training. It improves the data loading time by efficiently utilizing in-memory buffer. SOLAR is integrated with the PyTorch framework by utilizing parallel HDF5 Python APIs.
+SOLAR is a data-loading framework designed for distributed Deep Neural Networks (DNN) training. It enhances the data loading time by making efficient use of the in-memory buffer. SOLAR is integrated with the PyTorch framework, leveraging parallel HDF5 Python APIs.
 
-While preparing the artifacts, we executed them on a single node from a cluster that is equipped with 1TB of disk storage, 382GiB of memory, 2 Intel(R) Xeon(R) Gold 6238 and 2 Tesla A100 GPUs. We recommend that reviewers also use the similar system configuration or meet the minimum system requirements.
+While preparing the artifacts, we ran them on a single node from a cluster equipped with 1TB of disk storage, 382GiB of memory, two Intel(R) Xeon(R) Gold 6238 CPUs, and two Tesla A100 GPUs. We recommend that reviewers use a similar system configuration or meet the minimum system requirements.
 
-```
-Version 1.0
-```
 
 ## Minimum system requirements
 OS: Ubuntu (20.04 is recommended)
@@ -30,13 +27,13 @@ git clone https://github.com/hipdac-lab/PPoPP24-SOLAR-Image.git
 cat PPoPP24-SOLAR-Image/img/solar.sif-* > solar.sif
 ```
 
-### Step 3: Build and run the image file
+## Step 3: Build and run the image file
 ```
 singularity build --sandbox solar_img/ solar.sif
 singularity exec --nv -B /path/to/storage/:`pwd`/solar_img/home/data solar_img/ bash
 ```
 
-### Step 4: Download and preprocess dataset
+## Step 4: Download and preprocess a sample dataset
 ```
 cd solar_img/home/solar/Cosmoflow/utils
 ```
@@ -51,25 +48,26 @@ chmod 777 *
 ```
 cd ../
 ```
-### Step 5: IO Evaluation
-### Setup number of processes to launch MPI
+
+## Step 5: I/O Performance Evaluation
+### Setup the number of MPI processes
 ```
 export NPROCS=4
 ```
-### Execute IO Evaluation
+### Execute I/O evaluation
 ```
 chmod 777 *
 ./run_io.sh 2>&1 | tee io_results.txt
 ```
 
-### Execute End-to-end Evaluation
+### Execute end-to-end evaluation
 ```
 chmod 777 *
 ./run_end2end.sh 2>&1 | tee end2end_results.txt
 ```
 
 ## Expected Evaluation Results
-### The expected results for Baseline and SOLAR IO performances are:
+### The expected results for the baseline PyTorch Data Loader and SOLAR I/O performances are:
 ```
 Running Baseline IO
 This is GPU 0 from node: node0
@@ -108,9 +106,9 @@ DataLoading time SOLAR each epoch:
 [10.869527072412893, 8.379857301479205, 7.610679713310674]
 *******************************************
 ```
-### Note that the data loading time are in seconds.
+**Note that the data loading time are in seconds.**
 
-### The expected results for Baseline and SOLAR end-to-end performances are:
+### The expected results for the baseline and SOLAR end-to-end performances are:
 
 ```
 Running Baseline Training
