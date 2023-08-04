@@ -90,7 +90,7 @@ if args.run_time == 1:
     mat_start_time = time.perf_counter()
     matrix_result = generate_weight_matrix_cache_fifo_new(shuffle_list,LOCAL_BATCH_SIZE,cache_size,size)
     mat_time = time.perf_counter() - mat_start_time
-    print("Cost matrix done! Time: ",mat_time)
+    print("Cost matrix done! Time: {:.2f} s".format(mat_time))
     np.save(os.path.join(args.save_path,'matrix_result.npy'), matrix_result)
     # creates the Graph instance
     graph = Graph(amount_vertices=nepochs)
@@ -105,7 +105,7 @@ if args.run_time == 1:
     pso_start_time = time.perf_counter()
     pso.run() # runs the PSO algorithm
     pso_time = time.perf_counter() - pso_start_time
-    print("PSO done! Time: ",pso_time)
+    print("PSO done! Time: {:.2f} s".format(pso_time))
     #Get the scheduled shuffle list
 
     res_path=pso.getGBest().getPBest()
@@ -171,7 +171,7 @@ if args.run_time == 1:
             shuffle_list_sorted[i+1,st:ed] = temp_list #Replace original order with the new order     
         idx_to_load_total.append(idx_to_load_epoch)
     scheduling_time = time.perf_counter() - scheduling_start
-    print("scheduling done!, time: %s", scheduling_time)
+    print("scheduling done!, Time: {:.2f} s".format( scheduling_time))
     np.save(os.path.join(args.save_path,'shuffled_list_sorted.npy'), shuffle_list_sorted)
     with open(os.path.join(args.save_path,'idx_to_load_total'), 'wb') as fp:
         pickle.dump(idx_to_load_total,fp)
