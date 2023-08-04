@@ -14,7 +14,7 @@ Memory: >= 64GB RAM
 
 Number of GPU >= 2
 
-GPU Memory >= 32 GB
+GPU Memory >= 16 GB
 
 Python >= 3.8
 
