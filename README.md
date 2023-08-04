@@ -12,7 +12,13 @@ Storage System: >= 512GB
 
 Memory: >= 64GB RAM
 
+Number of GPU >= 2
+
+GPU Memory >= 32 GB
+
 Python >= 3.8
+
+
 
 ## Step 1: Install Singularity Container Platform
 Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
