@@ -19,8 +19,9 @@ Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 ### Method 1: via gdown
 ```
 pip3 install gdown
-gdown https://drive.google.com/uc?id=xxx=download
+gdown https://drive.google.com/file/d/1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI/view?usp=sharing
 ```
+
 ### Method 2: via GitHub
 ```
 git clone https://github.com/hipdac-lab/PPoPP24-SOLAR-Image.git
