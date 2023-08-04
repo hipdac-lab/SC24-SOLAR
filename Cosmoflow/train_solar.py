@@ -1026,7 +1026,7 @@ if run_time == 1:
         val_shuffle_list[epoch] = idx_arr
     val_shuffle_list = MPI.COMM_WORLD.bcast(val_shuffle_list, root=0)
 else:
-    print('Shuffle list loading not yet supported')
+    print('Loading Shuffle List')
 transform = CosmoFlowTransform(apply_log)
 train_data2=CosDataset(indices=shuffle_list_sorted,
                         rank=rank,
