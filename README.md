@@ -28,48 +28,60 @@ Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 pip3 install gdown
 gdown https://drive.google.com/u/0/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI
 ```
+
 Please note that if you still receive a "command not found" error, you should try adding ```~/.local/bin``` to your environment variable $PATH.
 
 ## Step 3: Build and Run Our Singularity Image
+
 ```
 singularity build --sandbox solar_img/ solar.sif
 singularity exec --nv -B /path/to/storage/:`pwd`/solar_img/home/data solar_img/ bash
 ```
+
 Please note that you should change **/path/to/storage/** to a path that points to an external storage system with hard disks or SSDs.
 
 ## Step 4: Download and Preprocess Sample Dataset
+
 ```
 cd solar_img/home/solar/Cosmoflow/utils
 ```
+
 set the desired dataset size (in GB)
+
 ```
 export MY_SIZE=16
 ```
+
 ```
 chmod 777 *
 ./download_and_preprocess.sh
 ```
+
 ```
 cd ../
 ```
 
 ## Step 5: I/O Performance Evaluation
 ### Setup the number of MPI processes
+
 ```
 export NPROCS=4
 ```
 ### Execute I/O evaluation script
+
 ```
 ./run_io.sh 2>&1 | tee io_results.txt
 ```
 
 ### Execute end-to-end evaluation script
+
 ```
 ./run_end2end.sh 2>&1 | tee end2end_results.txt
 ```
 
 ## Expected Evaluation Results
 ### The expected results for the baseline and SOLAR I/O performances are:
+
 ```
 Running Baseline IO
 This is GPU 0 from node: node0
