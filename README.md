@@ -71,7 +71,6 @@ export NPROCS=4
 
 ### Execute end-to-end evaluation script
 ```
-chmod 777 *
 ./run_end2end.sh 2>&1 | tee end2end_results.txt
 ```
 
