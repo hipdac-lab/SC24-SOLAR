@@ -117,7 +117,7 @@ DataLoading time SOLAR each epoch: [5.050071187783033, 2.7492021687794477, 2.865
 
 ```
 Running Baseline Training
-This is GPU 0 from node: hipdac
+This is GPU 0 from node: node0
 number of training:32
 Will have 2 steps.
 100%|██████████| 3/3 [00:10<00:00,  3.49s/it]
@@ -136,7 +136,7 @@ Cost matrix done! Time: 0.00 s
 PSO done! Time: 0.01 s
 scheduling done!, Time: 0.00 s
 Running SOLAR Training
-This is GPU 0 from node: hipdac
+This is GPU 0 from node: node0
 number of training:32
 Will have 2 steps.
 Loading Shuffle List
