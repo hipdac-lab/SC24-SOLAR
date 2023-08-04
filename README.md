@@ -19,7 +19,7 @@ Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 ### Method 1: via gdown
 ```
 pip3 install gdown
-gdown [https://drive.google.com/file/d/1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI/view?usp=sharing](https://drive.google.com/u/5/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI&export=download)
+gdown <https://drive.google.com/u/5/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI&export=download>
 ```
 
 ### Method 2: via GitHub
