@@ -59,14 +59,17 @@ export NPROCS=4
 ### Execute IO Evaluation
 ```
 chmod 777 *
-./run.sh 2>&1 | tee io_results.txt
+./run_io.sh 2>&1 | tee io_results.txt
 ```
 
-### End-to-end Evaluation
-
+### Execute End-to-end Evaluation
+```
+chmod 777 *
+./run_end2end.sh 2>&1 | tee end2end_results.txt
+```
 
 ## Expected Evaluation Results
-### The expected results for Baseline and SOLAR IO performance are:
+### The expected results for Baseline and SOLAR IO performances are:
 ```
 Running Baseline IO
 This is GPU 0 from node: node0
@@ -106,3 +109,39 @@ DataLoading time SOLAR each epoch:
 *******************************************
 ```
 ### Note that the data loading time are in seconds.
+
+### The expected results for Baseline and SOLAR end-to-end performances are:
+
+```
+Running Baseline Training
+This is GPU 0 from node: node0
+number of training:32
+Will have 2 steps.
+************Baseline***************
+Number of Processes used: 1
+Number of Epochs: 3
+Batch Size: 16
+DataLoading time: ['1.091', '1.234', '1.311'] s
+Epoch time: ['1.146', '1.240', '1.318'] s
+Training Loss: ['0.28433', '0.27858', '0.27614']
+Validation Loss: ['0.41840', '0.41763', '0.41663']
+*******************************************
+Running SOLAR shuffle
+Cost matrix done! Time: 0.00 s
+PSO done! Time: 0.01 s
+scheduling done!, Time: 0.00 s
+Running SOLAR Training
+This is GPU 0 from node: node0
+number of training:32
+Will have 2 steps.
+Shuffle list loading not yet supported
+************SOLAR***************
+Number of Processes used: 1
+Number of Epochs: 3
+Batch Size: 16
+DataLoading time: ['1.195', '1.221', '1.179'] s
+Epoch time: ['1.256', '1.229', '1.186'] s
+Training Loss: ['0.20079', '0.19213', '0.19029']
+Validation Loss: ['0.32161', '0.32487', '0.32920']
+*******************************************
+```
