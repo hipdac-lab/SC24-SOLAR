@@ -79,39 +79,36 @@ export NPROCS=4
 ```
 Running Baseline IO
 This is GPU 0 from node: node0
-number of training:1024
-Will have 16 steps.
-16it [00:18,  1.17s/it]
-16it [00:18,  1.13s/it]
-16it [00:17,  1.09s/it]
+number of training:800
+Will have 12 steps.
+13it [00:08,  1.57it/s]
+13it [00:08,  1.58it/s]
+13it [00:08,  1.61it/s]
 *******************************************
 Number of Processes used: 4
 Number of Epochs: 3
 Batch Size: 16
-DataLoading time baseline: 32.829884386388585
-DataLoading time baseline each epoch: 
-[11.305620059138164, 10.927908385172486, 10.596355942077935]
+DataLoading time baseline: 15.191988468635827
+DataLoading time baseline each epoch: [5.0673624468036, 5.1143175065517426, 5.010308515280485]
 *******************************************
 
 Running SOLAR shuffle
 Cost matrix done! Time: 0.00 s
-PSO done! Time: 0.00 s
+PSO done! Time: 0.01 s
 scheduling done!, Time: 0.01 s
 Running SOLAR IO
 This is GPU 0 from node: node0
-number of training:1024
-Will have 16 steps.
-16it [00:42,  2.69s/it]
-16it [00:18,  1.15s/it]
-16it [00:16,  1.06s/it]
+number of training:800
+Will have 12 steps.
+13it [00:24,  1.87s/it]
+13it [00:07,  1.68it/s]
+13it [00:08,  1.62it/s]
 *******************************************
 Number of Processes used: 4
 Number of Epochs: 3
 Batch Size: 16
-DataLoading time SOLAR: 26.860064087202772
-DataLoading time SOLAR each epoch: 
-
-[10.869527072412893, 8.379857301479205, 7.610679713310674]
+DataLoading time SOLAR: 10.664569426560774
+DataLoading time SOLAR each epoch: [5.050071187783033, 2.7492021687794477, 2.865296069998294]
 *******************************************
 ```
 **Note that all data loading time are in seconds.**
@@ -120,34 +117,38 @@ DataLoading time SOLAR each epoch:
 
 ```
 Running Baseline Training
-This is GPU 0 from node: node0
+This is GPU 0 from node: hipdac
 number of training:32
 Will have 2 steps.
+100%|██████████| 3/3 [00:10<00:00,  3.49s/it]
 ************Baseline***************
-Number of Processes used: 1
+Number of Processes used: 2
 Number of Epochs: 3
-Batch Size: 16
-DataLoading time: ['1.091', '1.234', '1.311'] s
-Epoch time: ['1.146', '1.240', '1.318'] s
-Training Loss: ['0.28433', '0.27858', '0.27614']
-Validation Loss: ['0.41840', '0.41763', '0.41663']
+Batch Size: 8
+DataLoading time: ['0.317', '0.317', '0.314'] s
+Epoch time: ['0.348', '0.322', '0.319'] s
+Training Loss: ['0.22954', '0.22925', '0.22760']
+Validation Loss: ['0.52125', '0.52459', '0.52947']
 *******************************************
+
 Running SOLAR shuffle
 Cost matrix done! Time: 0.00 s
 PSO done! Time: 0.01 s
 scheduling done!, Time: 0.00 s
 Running SOLAR Training
-This is GPU 0 from node: node0
+This is GPU 0 from node: hipdac
 number of training:32
 Will have 2 steps.
-Shuffle list loading not yet supported
+Loading Shuffle List
+Loading Shuffle List
+100%|██████████| 3/3 [00:10<00:00,  3.45s/it]
 ************SOLAR***************
-Number of Processes used: 1
+Number of Processes used: 2
 Number of Epochs: 3
-Batch Size: 16
-DataLoading time: ['1.195', '1.221', '1.179'] s
-Epoch time: ['1.256', '1.229', '1.186'] s
-Training Loss: ['0.20079', '0.19213', '0.19029']
-Validation Loss: ['0.32161', '0.32487', '0.32920']
+Batch Size: 8
+DataLoading time: ['0.301', '0.312', '0.311'] s
+Epoch time: ['0.328', '0.316', '0.316'] s
+Training Loss: ['0.24233', '0.24393', '0.22934']
+Validation Loss: ['0.48375', '0.48202', '0.47959']
 *******************************************
 ```
