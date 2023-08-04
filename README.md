@@ -24,17 +24,12 @@ Python >= 3.8
 Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 
 ## Step 2: Download Pre-built Singularity Image File
-### Method 1: via gdown
 ```
 pip3 install gdown
 gdown https://drive.google.com/u/0/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI
 ```
 Please note that if you still receive a "command not found" error, you should try adding ```~/.local/bin``` to your environment variable $PATH.
 
-### Method 2: via GitHub
-```
-git clone https://github.com/hipdac-lab/PPoPP24-SOLAR-Image.git
-cat PPoPP24-SOLAR-Image/img/solar.sif-* > solar.sif
 ```
 
 ## Step 3: Build and Run Our Singularity Image
