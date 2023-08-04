@@ -1,88 +1,108 @@
 # SOLAR: A High-Performance Data Loading Framework for Distributed DNN Training with Large Datasets
 
-SOLAR is a data loading framework designed for distributed Deep Neural Networks (DNN) training.
+SOLAR is a data-loading framework for distributed Deep Neural Networks (DNN) training. It improves the data loading time by efficiently utilizing in-memory buffer. SOLAR is integrated with the PyTorch framework by utilizing parallel HDF5 Python APIs.
+
+While preparing the artifacts, we executed them on a single node from a cluster that is equipped with 1TB of disk storage, 382GiB of memory, 2 Intel(R) Xeon(R) Gold 6238 and 2 Tesla A100 GPUs. We recommend that reviewers also use the similar system configuration or meet the minimum system requirements.
 
 ```
 Version 1.0
 ```
 
 ## Minimum system requirements
-Parallel File System (e.g., Lustre): >= 1TB
+OS: Ubuntu (20.04 is recommended)
 
-Memory: >= 40GB RAM each node
+Storage System: >= 512GB
 
-Number of Compute Nodes: >= 2 (Recommended 16 nodes for the example)
+Memory: >= 64GB RAM
 
+## Step 1: Install Singularity
+Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 
-## Step 1: Download This Repo
+## Step 2: Download the pre-built Singularity image file
+### Method 1: via gdown
 ```
-git clone https://github.com/hipdac-lab/PPoPP24-SOLAR.git
+pip3 install gdown
+gdown https://drive.google.com/uc?id=xxx=download
 ```
-
-## Step 2: Build Environment
-
-Requirements:
-    
-(1) spack
-        
-We use spack to help build this environemnt and manage the dependecies
-
-```        
-git clone -c feature.manyFiles=true https://github.com/spack/spack.git
+### Method 2: via GitHub
 ```
-```
-. spack/share/spack/setup-env.sh
-```
-```
-spack env create solar
-```
-```
-spack env activate solar
+git clone https://github.com/hipdac-lab/PPoPP24-SOLAR-Image.git
+cat PPoPP24-SOLAR-Image/img/solar.sif-* > solar.sif
 ```
 
-(2) One of the MPI library that supports MPI-IO: openmpi/4.0.5, mpich/8.1.23
-    
-(3) Parallel HDF5 (PHDF5)
-
+### Step 3: Build and run the image file
 ```
-spack install --add hdf5@1.12.1
-```
-Spack will handle the mpi dependicies
-
-## Step 3: Install anaconda
-```
-wget https://repo.anaconda.com/archive/Anaconda3-2023.07-1-Linux-x86_64.sh
-```
-Hit enter if agree the license
-```
-cd ~/anaconda3/bin
-```
-```
-./conda init
-```
-```
-source ~/.bashrc
+singularity build --sandbox solar_img/ solar.sif
+singularity exec --nv -B /path/to/storage/:`pwd`/solar_img/home/data solar_img/ bash
 ```
 
-##Step 4: Build anaconda environment
+### Step 4: Download and preprocess dataset
 ```
-conda create -n solar python=3.8
+cd solar_img/home/solar/Cosmoflow/utils
 ```
+set the desired dataset size (in GB)
 ```
-conda activate solar
-```
-```
-pip install mpi4py
+export MY_SIZE=16
 ```
 ```
-export HDF5_ROOT=$(h5cc --version | sed -n '2 p' | awk '{print substr($0, 8 )}')
+chmod 777 *
+./download_and_preprocess.sh
 ```
 ```
-HDF5_MPI="ON" HDF5_DIR=$HDF5_ROOT pip install --user --no-binary=h5py h5py
+cd ../
+```
+### Step 5: IO Evaluation
+### Setup number of processes to launch MPI
+```
+export NPROCS=4
+```
+### Execute IO Evaluation
+```
+chmod 777 *
+./run.sh 2>&1 | tee io_results.txt
 ```
 
-## Step 3: Download Dataset
-```
-cd PPoPP24-SOLAR/cosmoflow/data
-```
+### End-to-end Evaluation
 
+
+## Expected Evaluation Results
+### The expected results for Baseline and SOLAR IO performance are:
+```
+Running Baseline IO
+This is GPU 0 from node: node0
+number of training:1024
+Will have 16 steps.
+16it [00:18,  1.17s/it]
+16it [00:18,  1.13s/it]
+16it [00:17,  1.09s/it]
+*******************************************
+Number of Processes used: 4
+Number of Epochs: 3
+Batch Size: 16
+DataLoading time baseline: 32.829884386388585
+DataLoading time baseline each epoch: 
+[11.305620059138164, 10.927908385172486, 10.596355942077935]
+*******************************************
+
+Running SOLAR shuffle
+Cost matrix done! Time: 0.00 s
+PSO done! Time: 0.00 s
+scheduling done!, Time: 0.01 s
+Running SOLAR IO
+This is GPU 0 from node: node0
+number of training:1024
+Will have 16 steps.
+16it [00:42,  2.69s/it]
+16it [00:18,  1.15s/it]
+16it [00:16,  1.06s/it]
+*******************************************
+Number of Processes used: 4
+Number of Epochs: 3
+Batch Size: 16
+DataLoading time SOLAR: 26.860064087202772
+DataLoading time SOLAR each epoch: 
+
+[10.869527072412893, 8.379857301479205, 7.610679713310674]
+*******************************************
+```
+### Note that the data loading time are in seconds.
