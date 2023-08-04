@@ -66,7 +66,6 @@ export NPROCS=4
 ```
 ### Execute I/O evaluation script
 ```
-chmod 777 *
 ./run_io.sh 2>&1 | tee io_results.txt
 ```
 
