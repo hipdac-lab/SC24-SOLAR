@@ -30,8 +30,6 @@ gdown https://drive.google.com/u/0/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI
 ```
 Please note that if you still receive a "command not found" error, you should try adding ```~/.local/bin``` to your environment variable $PATH.
 
-```
-
 ## Step 3: Build and Run Our Singularity Image
 ```
 singularity build --sandbox solar_img/ solar.sif
