@@ -33,6 +33,7 @@ cat PPoPP24-SOLAR-Image/img/solar.sif-* > solar.sif
 singularity build --sandbox solar_img/ solar.sif
 singularity exec --nv -B /path/to/storage/:`pwd`/solar_img/home/data solar_img/ bash
 ```
+Please note that you should change **/path/to/storage/** to a path that points to an external storage system with hard disks or SSDs.
 
 ## Step 4: Download and Preprocess Sample Dataset
 ```
