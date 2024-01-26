@@ -23,10 +23,10 @@ Python >= 3.8
 ## Step 1: Install Singularity Container Platform
 Install [Singularity](https://singularity-tutorial.github.io/01-installation/)
 
-## Step 2: Download Pre-built Singularity Image File
+## Step 2: Download Pre-built Singularity Image File From Google Drive
 ```
 pip3 install gdown
-gdown https://drive.google.com/u/0/uc?id=1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI
+gdown 1phLdMSgpniiZW0S0qnRoHt_rXhVA74gI
 ```
 
 Please note that if you still receive a "command not found" error, you should try adding ```~/.local/bin``` to your environment variable $PATH.
