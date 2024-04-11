@@ -1,4 +1,4 @@
-# SOLAR: A High-Performance Data Loading Framework for Distributed DNN Training with Large Datasets
+# A High-Performance Data Loading Framework for Distributed DNN Training with Remote Storage
 
 SOLAR is a data-loading framework designed for distributed Deep Neural Networks (DNN) training. It enhances the data loading time by making efficient use of the in-memory buffer. SOLAR is integrated with the PyTorch framework, leveraging parallel HDF5 Python APIs.
 
